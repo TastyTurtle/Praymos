@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Bestiario de Praymos</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #4A90E2;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav li {
+            position: relative;
+        }
+        nav a {
+            text-decoration: none;
+            color: #4A90E2;
+            font-weight: bold;
+        }
+        .intro {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .intro p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            width: 70%;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+            flex: 0 0 auto;
+            background-color: #000; /* Fondo para imágenes más pequeñas */
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .carousel-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bestiario de Praymos</h1>
+        <nav>
+            <ul>
+                <li><a href="Bestias.html">Bestias</a></li>
+                <li><a href="Guerreros.html">Guerreros</a></li>
+                <li><a href="Lugares.html">Lugares</a></li>
+                <li><a href="Objetos.html">Objetos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <h2>Bienvenido al Bestiario de Praymos</h2>
+            <p>El Bestiario de Praymos es una colección única de criaturas, guerreros, lugares y objetos mágicos que habitan la mística región de Praymos, un mundo lleno de secretos y maravillas. Aquí podrás explorar las descripciones, ilustraciones y detalles de cada elemento que compone este universo. ¡Sumérgete y descubre lo increíble que este mundo tiene para ofrecer!</p>
+        </section>
+
+        <div class="carousel">
+            <div class="carousel-track">
+                <img src="principal.png" alt="Imagen 1">
+                <img src="index2.jpg" alt="Imagen 2">
+                <img src="templo.jpg" alt="Imagen 3">
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-button" id="prevButton">&#10094;</button>
+                <button class="carousel-button" id="nextButton">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p style="text-align: center; margin-top: 40px; font-size: 0.9rem; color: #666;">© 2025 Bestiario de Praymos</p>
+    </footer>
+
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const prevButton = document.querySelector('#prevButton');
+        const nextButton = document.querySelector('#nextButton');
+        let currentIndex = 0;
+
+        const updateCarousel = () => {
+            const offset = -currentIndex * 100;
+            track.style.transform = `translateX(${offset}%)`;
+        };
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCarousel();
+        });
+
+        updateCarousel();
+    </script>
+</body>
+</html>
